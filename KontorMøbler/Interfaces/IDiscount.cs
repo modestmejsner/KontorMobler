@@ -4,14 +4,11 @@ namespace Application
 {
     public interface IDiscount
     {
-        public int Type { get; set; }
-        public decimal Amount { get; set; }
+        //public bool SpecialProductOffer { get; set; }
+        //public int Volume { get; set; }
 
         public DateTime ValidFrom{ get; set; }
         public DateTime ValidTo { get; set; }
-
-        bool IsValid(DateTime dateTime);
-
-        decimal Recalculation(decimal Spent);
+        public bool Calculate();
     }
 }
