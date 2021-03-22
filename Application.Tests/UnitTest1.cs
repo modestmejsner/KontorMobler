@@ -18,6 +18,7 @@ namespace Application.Tests
 
             var customerMock = new Mock<ICustomer>();
             customerMock.Setup(x => x.Spent).Returns(2500);
+            customerMock.Setup(x => x.IsDiscountAgreement).Returns(true);
             var discount = new Discount(customerMock.Object)
             {
                 Price = 100,
@@ -35,6 +36,7 @@ namespace Application.Tests
 
             var customerMock = new Mock<ICustomer>();
             customerMock.Setup(x => x.Spent).Returns(2500);
+            customerMock.Setup(x => x.IsDiscountAgreement).Returns(true);
             var discount = new Discount(customerMock.Object)
             {
                 Price = 100000,
@@ -52,6 +54,7 @@ namespace Application.Tests
 
             var customerMock = new Mock<ICustomer>();
             customerMock.Setup(x => x.Spent).Returns(2500);
+            customerMock.Setup(x => x.IsDiscountAgreement).Returns(true);
             var discount = new Discount(customerMock.Object)
             {
                 Price = 100,
