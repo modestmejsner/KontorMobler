@@ -10,7 +10,7 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class KontorMøblerController : ControllerBase
+    public class KontorMoblerController : ControllerBase
     {
         private static readonly Customer[] Customers = new[]
         {
@@ -34,28 +34,29 @@ namespace WebAPI.Controllers
 
         };
 
-        private readonly ILogger<KontorMøblerController> _logger;
+        private readonly ILogger<KontorMoblerController> _logger;
 
-        public KontorMøblerController(ILogger<KontorMøblerController> logger)
+        public KontorMoblerController(ILogger<KontorMoblerController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    List<string> result = new List<string>();
-        //    foreach (var discount in Discounts)
-        //    {
-        //        if (!discount.Calculate())
-        //        {
-        //            result.Add(discount.Name);
-        //        }
-        //    }
-        //    return result;
-        //}
-
         public IEnumerable<string> Get()
+        {
+            List<string> result = new List<string>();
+            foreach (var discount in Discounts)
+            {
+                if (!discount.Calculate())
+                {
+                    result.Add(discount.Name);
+                }
+            }
+            return result;
+        }
+
+        [HttpPost]
+        public IEnumerable<string> Post()
         {
             List<string> result = new List<string>();
             foreach (var customer in Customers)
