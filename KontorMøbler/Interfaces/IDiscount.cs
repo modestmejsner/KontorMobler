@@ -1,14 +1,11 @@
-﻿using System;
-
-namespace Application
+﻿namespace Application
 {
-    public interface IDiscount
+    internal interface IDiscount
     {
+        public int Id { get; set; }
         //public bool SpecialProductOffer { get; set; }
         //public int Volume { get; set; }
-
-        public DateTime ValidFrom{ get; set; }
-        public DateTime ValidTo { get; set; }
+        public void IsDiscountAgreement(ICustomer customer);
         public bool Calculate();
     }
 }
