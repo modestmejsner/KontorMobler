@@ -4,8 +4,7 @@ namespace Application
 {
     public abstract class Discount : Product, IDiscount
     {
-        private ICustomer _customer;
-        //public bool SpecialProductOffer { get; set; } //In order to extend the Discount for a special product offer.
+        protected readonly ICustomer _customer;
         public void IsDiscountAgreement(ICustomer customer)
         {
             if (customer.Spent > 2000)
@@ -13,7 +12,7 @@ namespace Application
                 _customer.IsDiscountAgreement = true;
             }
         }
-        public Discount(ICustomer customer)
+        protected Discount(ICustomer customer)
         {
             _customer = customer;
             IsDiscountAgreement(_customer);
@@ -45,11 +44,6 @@ namespace Application
                 Price = Decimal.Multiply(Price, 0.7m);
                 return true;
             }
-            //if (SpecialProductOffer) //In order to extend the Discount for a special product offer.
-            //{
-            //    Price /= 2;
-            //    return true; 
-            //}
             return false;
         }
     }
