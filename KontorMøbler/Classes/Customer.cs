@@ -1,6 +1,4 @@
-﻿
-
-namespace Application
+﻿namespace Application
 {
     public class Customer : ICustomer
     {

@@ -6,19 +6,18 @@ namespace Application.Tests
 {
     public class Tests
     {
+        readonly Mock<ICustomer> customerMock = new Mock<ICustomer>();
         [SetUp]
         public void Setup()
         {
+            customerMock.Setup(x => x.Spent).Returns(2500);
+            customerMock.Setup(x => x.IsDiscountAgreement).Returns(true);
         }
 
         [Test]
-        public void Discount_Price_Should_Be_Calculate_Based_On_Customer_Spent_Low_At_Ones()
+        public void Calculate_PriceWhileSpentLowAtOnes_TheSmallestDiscount()
         {
             var priceExpected = 90;
-
-            var customerMock = new Mock<ICustomer>();
-            customerMock.Setup(x => x.Spent).Returns(2500);
-            customerMock.Setup(x => x.IsDiscountAgreement).Returns(true);
             var discount = new Discount(customerMock.Object)
             {
                 Price = 100,
@@ -30,7 +29,7 @@ namespace Application.Tests
         }
 
         [Test]
-        public void Discount_Price_Should_Be_Calculate_Based_On_Customer_Spent_Huge_At_Ones()
+        public void Calculate_PriceWhileSpentHighAtOnes_TheHighestDiscount()
         {
             var priceExpected = 70000;
 
@@ -48,7 +47,7 @@ namespace Application.Tests
         }
 
         [Test]
-        public void Discount_Price_Should_Be_The_Same_Time_Out_Of_Dated()
+        public void Calculate_DiscountOutDated_NoneDiscount()
         {
             var priceExpected = 100;
 
